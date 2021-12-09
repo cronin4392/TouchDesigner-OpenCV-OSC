@@ -17,6 +17,7 @@ mpDraw = mp.solutions.drawing_utils
 cap = cv2.VideoCapture(0)
 # cap = cv2.VideoCapture('dancing.mp4')
 
+# Helper function to normalize direction and scale of y axis for TouchDesigner
 def adjustY(y, w, h):
     return (1 - y) * (h / w)
 
@@ -37,7 +38,6 @@ while True:
             # Send our values over OSC
             client.send_message(f"/landmark-{id}-x", x)
             client.send_message(f"/landmark-{id}-y", adjustY(y, w, h))
-            # client.send_message(f"/landmark-{id}-y", y)
             client.send_message(f"/landmark-{id}-z", z)
 
             # Draw circles on the pose areas. This is purely for debugging
